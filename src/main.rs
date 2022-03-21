@@ -15,6 +15,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>>
     let microseconds = start.elapsed().as_micros();
     println!("microseconds = {}", microseconds);
 
+    let start = Instant::now();
+    async_foo_sync_bar().await?;
+    let microseconds = start.elapsed().as_micros();
+    println!("microseconds = {}", microseconds);
+
     Ok(())
 }
 
@@ -26,6 +31,21 @@ async fn async_foo() -> Result<(), Box<dyn std::error::Error>>
 
     for _i in 0..10000000 {
         x = async_bar(x).await;
+    }
+
+    println!("x = {}", x);
+
+    Ok(())
+}
+
+async fn async_foo_sync_bar() -> Result<(), Box<dyn std::error::Error>>
+{
+    println!("Async foo/sync bar");
+
+    let mut x = 0;
+
+    for _i in 0..10000000 {
+        x = sync_bar(x);
     }
 
     println!("x = {}", x);

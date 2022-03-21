@@ -13,10 +13,13 @@ $ cargo run
 Async/sync function call benchmark
 Async foo
 x = 10000000
-microseconds = 377538
+microseconds = 371021
 Sync foo
 x = 10000000
-microseconds = 147436
+microseconds = 146831
+Async foo/sync bar
+x = 10000000
+microseconds = 155278
 ```
 
 Production
@@ -29,8 +32,11 @@ $ ./target/release/async_fn_bench
 Async/sync function call benchmark
 Async foo
 x = 10000000
-microseconds = 12109
+microseconds = 12500
 Sync foo
 x = 10000000
-microseconds = 819
+microseconds = 778
+Async foo/sync bar
+x = 10000000
+microseconds = 742
 ```
